@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes');
 const authRoutes = require('./routes/authRoutes');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(cookieParser());
 
 // if you want change views directory
 //app.set('views', 'myViews');
