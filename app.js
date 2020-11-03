@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes');
 const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
+const { requireAuth } = require('./middleware/authMiddleware');
 
 const app = express();
 
@@ -11,7 +12,7 @@ const app = express();
 const dbURI = "mongodb+srv://shabayek:shabayek123@expresstut.gp346.mongodb.net/expresstut";
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-        .then(result => app.listen(3000))
+        .then(result => app.listen(4000))
         .catch(err => console.log(err));
 
 // register view engine
@@ -42,7 +43,7 @@ app.get('/about', (req, res) => {
 });
 
 // blog routes
-app.use('/blogs', blogRoutes);
+app.use('/blogs', requireAuth, blogRoutes);
 
 // Auth routes
 app.use(authRoutes);
