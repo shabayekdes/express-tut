@@ -9,7 +9,8 @@ const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const app = express();
 
 //connect to mongodb & listen for requests
-const dbURI = "mongodb+srv://shabayek:shabayek123@expresstut.gp346.mongodb.net/expresstut";
+const dbURI = "mongodb+srv://shabayek:shabayek123@expresstut.gp346.mongodb.net/?retryWrites=true&w=majority";
+
 const PORT = process.env.PORT || 5000
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
